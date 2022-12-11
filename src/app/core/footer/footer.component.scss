@@ -1,0 +1,33 @@
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  background-color: #141e29;
+  color: white;
+  font-weight: 600;
+}
+
+.footer .logo {
+  margin: 0 32px;
+  display: flex;
+  align-items: center;
+}
+
+// .footer span:not(:last-child) {
+//   margin-left: -4px;
+// }
+.cp-text {
+  //   position: absolute;
+  //   bottom: 0;
+  //   right: 0;
+  margin: 0 32px;
+  //   color: white;
+  //   text-shadow: 0 1px rgba(255, 255, 255, 0.1);
+}
+.spacer {
+  flex: 1;
+}
