@@ -5,6 +5,7 @@ import { FooterComponent } from './footer/footer.component';
 
 import {RouterModule} from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { AuthService } from '../auth/services/auth.service';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, NotFoundComponent],
@@ -14,6 +15,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   exports: [
     HeaderComponent, FooterComponent,NotFoundComponent
-  ]
+  ],
+  providers : [AuthService]
 })
 export class CoreModule { }

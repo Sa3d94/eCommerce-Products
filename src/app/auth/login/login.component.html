@@ -1,0 +1,61 @@
+<div class="wrapper">
+	<div class="container">
+        <img
+        width="90"
+        alt="Angular Logo"
+        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
+      />
+        <h1>Log in to your account</h1>
+        <h2>Welcome back! Please enter your details.</h2>
+		<form #loginForm="ngForm" class="form" (ngSubmit)="loginForm.form.valid && login(loginForm)" >
+         <div class="form-control-group">
+            <label>Username</label>
+            <!--  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" -->
+            <input 
+            [disabled] ="isLogging"
+            type="text" 
+            placeholder="Enter your email" 
+            [(ngModel)]="Username" 
+            #username="ngModel" 
+            name="username" 
+            id="username"
+            maxlength="60"
+            required
+         
+            >
+            <ng-container *ngIf="(username.touched && username.invalid)">
+                <p class="status-danger" *ngIf="username.errors?.['required']">
+                    Username is required!
+                </p>
+                <!-- <p class="status-danger" *ngIf="email.errors?.['pattern']">
+                    Please enter a valid email
+                </p> -->
+            </ng-container>
+
+         </div>
+         <div class="form-control-group">
+            <label>Password</label>
+
+            <input 
+            [disabled] ="isLogging"
+            type="password" 
+            placeholder = "***********" 
+            [(ngModel)]="Password" 
+            #password="ngModel" 
+            name="password" 
+            id="password"
+            maxlength="150"
+            required>
+            <ng-container *ngIf="(password.touched && password.invalid)">
+                <p class="status-danger" *ngIf="password.errors?.['required']">
+                    Passowrd is required!
+                </p>
+            </ng-container>
+        </div>
+			<button   [disabled] ="isLogging" type="submit" id="login-button">Sign in</button>
+		</form>
+    </div>
+    <!-- [ngClass]="step == 'step1' ? 'my_class1' : 'my_class2'" -->
+	<div [ngClass]="errorMessage != null ? 'show' : ''" id="snackbar">{{errorMessage}}</div>
+
+</div>
