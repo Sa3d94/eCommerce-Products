@@ -2,6 +2,8 @@ import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../../store/app.reducer';
 
 @Component({
   selector: 'app-login',
@@ -13,32 +15,22 @@ export class LoginComponent implements OnInit {
   Password : string = "";
   errorMessage : any;
   isLogging = false;
-  constructor(private _authService : AuthService,     private router: Router) {
+  constructor(private _authService : AuthService,
+    private router: Router, 
+     private store: Store<fromApp.AppState>) {
 
   }
 
   ngOnInit(): void {
+  this.store.select("auth").subscribe(state => {
+    this.errorMessage = state.authError;
+    this.isLogging = state.loading;
+  })
   }
-  login(loginForm : NgForm) : void {
+  async login(loginForm : NgForm) {
     
     if (loginForm.valid) {
-      this.isLogging = true;
-      this._authService.Login(this.Username,this.Password).subscribe((res: any) => {
-        this.isLogging = false;
-
-        sessionStorage.setItem("token", res.token);
-
-        this.router.navigate(["/home"]);
-
-        console.log(res);
-        
-      }, (error : any) => {
-      this.errorMessage = error.error.message;
-      this.isLogging = false; 
-
-      // After 3 seconds, remove the show class from DIV
-      setTimeout(() =>{ this.errorMessage = null }, 3000);
-      })
+      await this._authService.Login(this.Username,this.Password);
       
     }
 

@@ -1,4 +1,3 @@
-import { LOGIN_START } from "./auth.actions";
 import { User } from "../user.model";
 import * as AuthActions from ".//auth.actions";
 
@@ -19,12 +18,19 @@ export function AuthReducer(
   action: AuthActions.AuthActions
 ) {
   switch (action.type) {
+    case AuthActions.LOGIN_START:
+      return {
+        ...state,
+        authError: null,
+        loading: true,
+      };
+      
     case AuthActions.AUTHENTICATE_SUCCESS:
       const user = new User(
         action.payload.email,
         action.payload.userId,
-        action.payload.token,
-        action.payload.expirationDate
+        // action.payload.token,
+        // action.payload.expirationDate
       );
       return {
         ...state,
@@ -38,12 +44,7 @@ export function AuthReducer(
         user: null,
       };
 
-    case AuthActions.LOGIN_START:
-      return {
-        ...state,
-        authError: null,
-        loading: true,
-      };
+  
     case AuthActions.AUTHENTICATE_FAIL:
       return {
         ...state,
@@ -52,13 +53,6 @@ export function AuthReducer(
         loading: false,
       };
 
-    case AuthActions.SIGNUP_START:
-      return {
-        ...state,
-        user: null,
-        authError: null,
-        loading: true,
-      };
     case AuthActions.CLEAR_ERROR:
       return {
         ...state,

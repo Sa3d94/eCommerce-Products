@@ -3,11 +3,7 @@ export const LOGIN_START = "[Auth] Login Start";
 export const AUTHENTICATE_SUCCESS = "[Auth] Authenticate Success";
 export const AUTHENTICATE_FAIL = "[Auth] Authenticate Failed";
 export const LOGOUT = "[Auth] Logout";
-// export const SIGNUP = "[Auth] Signup";
-// export const SIGNUP_FAIL = "[Auth] Signup Failed";
-export const SIGNUP_START = "[Auth] Signup Start";
 export const CLEAR_ERROR = "[Auth] Clear Error";
-export const AUTO_LOGIN = "[Auth] Auto Login";
 
 export class AuthenticateSuccess implements Action {
   readonly type = AUTHENTICATE_SUCCESS;
@@ -15,8 +11,8 @@ export class AuthenticateSuccess implements Action {
     public payload: {
       email: string;
       userId: string;
-      token: string;
-      expirationDate: Date;
+      // token: string;
+      // expirationDate: Date;
     }
   ) {}
 }
@@ -28,7 +24,7 @@ export class Logout implements Action {
 export class LoginStart implements Action {
   readonly type = LOGIN_START;
 
-  constructor(public payload: { email: string; password: string }) {}
+  constructor() {}
 }
 export class AuthenticateFail implements Action {
   readonly type = AUTHENTICATE_FAIL;
@@ -36,40 +32,16 @@ export class AuthenticateFail implements Action {
   constructor(public payload: string) {}
 }
 
-export class SignupStart implements Action {
-  readonly type = SIGNUP_START;
 
-  constructor(public payload: { email: string; password: string }) {}
-}
 export class ClearError implements Action {
   readonly type = CLEAR_ERROR;
 }
-export class AutoLogin implements Action {
-  readonly type = AUTO_LOGIN;
-}
-// export class Signup implements Action {
-//   readonly type = SIGNUP;
 
-//   constructor(
-//     public payload: {
-//       email: string;
-//       userId: string;
-//       token: string;
-//       expirationDate: Date;
-//     }
-//   ) {}
-// }
-// export class SignupFail implements Action {
-//   readonly type = SIGNUP_FAIL;
 
-//   constructor(public payload: string) {}
-// }
 
 export type AuthActions =
   | AuthenticateSuccess
   | Logout
   | LoginStart
   | AuthenticateFail
-  | SignupStart
   | ClearError
-  | AutoLogin;
