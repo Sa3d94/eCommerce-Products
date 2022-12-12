@@ -37,6 +37,8 @@ export class AuthService {
         ));
       sessionStorage.setItem("token", resData.token);
       this.router.navigate(["/home"]);
+      // Logout when the token expires
+
       }, 
       error => {
         this.store.dispatch(new AuthActions.AuthenticateFail(error.error.message));
@@ -48,6 +50,12 @@ export class AuthService {
   }
   //  handleError = (error: any) => { };
 
+
+  Logout () {
+     this.store.dispatch(new AuthActions.Logout());
+     sessionStorage.removeItem("token");
+     this.router.navigate(["/auth"]);
+  }
 
   ValidateToken() : boolean {
     let tokenInfo : any;
