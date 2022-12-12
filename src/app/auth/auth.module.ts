@@ -1,7 +1,10 @@
+import { CommonModule } from '@angular/common';
 
 import { NgModule } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 import { AuthRoutingModule } from "./auth-routing.module";
 import { LoginComponent } from './login/login.component';
+import { AuthService } from './services/auth.service';
 
 
 @NgModule({
@@ -9,10 +12,12 @@ import { LoginComponent } from './login/login.component';
     LoginComponent
   ],
   imports: [
-    AuthRoutingModule,   
+    AuthRoutingModule,
+    FormsModule,
+    CommonModule   
 
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: []
 })
 export class AuthModule { }
