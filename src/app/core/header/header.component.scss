@@ -4,7 +4,7 @@
 
 .toolbar {
   z-index: 5;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -17,6 +17,10 @@
 
   border-bottom: 2px solid;
   border-bottom-color: #808080;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 .toolbar .logo {
   margin: 0 12px;
@@ -28,14 +32,22 @@
   margin: 0 12px;
   display: flex;
   align-items: center;
-  column-gap: 10px;
+  // column-gap: 10px;
   justify-content: space-between;
 }
 input[type="search"] {
-  border-radius: 25px;
+  border-radius: 13px;
   padding: 15px;
-  width: 100px;
+  width: 109px;
   height: 10px;
+  -webkit-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+}
+
+.toolbar input:focus {
+  background-color: white;
+  width: 150px;
+  color: #808080;
 }
 
 // .toolbar img {
