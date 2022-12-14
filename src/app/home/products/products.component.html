@@ -2,18 +2,21 @@
 <div class="grid-ctr" >
 
     <div class="card" *ngFor = "let product of products | pagination: {perPage: perPage, currentPage: currentPage}">
-        <div class="dicount">
-            <span>-{{product.discountPercentage}}%</span>
+      
+        <div>
+            <img
+            src="{{product.thumbnail}}"
+             alt="Avatar" style="width:100%">
+            <div class="dicount">
+                <span>-{{product.discountPercentage}}%</span>
+            </div>
         </div>
-        <!--   -->
-        <img
-        src="{{product.thumbnail}}"
-         alt="Avatar" style="width:100%">
+       
         <div class="container">
             <div class="info">
-                <h2><b>{{product.title}}</b></h2> 
+                <h2 class ="product-title"><b>{{product.title}}</b></h2> 
           
-                <p>{{product.description}}</p>
+                <p class = "description-paragraph">{{product.description}}</p>
             </div>
     
           <div class ="price">
@@ -37,7 +40,9 @@
         </div>
 
         <div class="add-to-cart">
-            <button [disabled] ="product.stock == 0" (click) ="addToCart(product)" >ADD TO CART</button>
+            <button 
+            [disabled] ="product.stock == 0" 
+            (click) ="addToCart(product)" >ADD TO CART</button>
         </div>
     
         </div>
@@ -46,14 +51,18 @@
 
 </div>
 
-    <app-pagination
-    (prev)="prev()"
-    (goPage)="goToPage($event)"
-    (next)="next()"
-    [currentPage]="currentPage"
-    [pagesToShow]="pagesToShow"
-    [totalItemsCount]="products.length"
-    [perPage]="perPage"
-    ></app-pagination>
-
+<div class="splitter"></div>
+<app-pagination
+*ngIf = "products && products.length > 0"
+(prev)="prev()"
+(goPage)="goToPage($event)"
+(next)="next()"
+[currentPage]="currentPage"
+[pagesToShow]="pagesToShow"
+[totalItemsCount]="products.length"
+[perPage]="perPage"
+></app-pagination>
 </div>
+
+
+
