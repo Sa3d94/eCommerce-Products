@@ -24,7 +24,8 @@ const initialState: State = {
     switch (action.type) {
         case ProductsActions.SET_PRODUCTS:
             // Retrieve the categories from The products array
-            const categories = [...new Set(action.payload.map(s => s.category))] ;
+            //Adding All to the categories
+            const categories = ["All", ...new Set(action.payload.map(s => s.category))] ;
           return {
             ...state,
             products : action.payload,

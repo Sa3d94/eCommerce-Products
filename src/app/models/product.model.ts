@@ -1,7 +1,7 @@
 export class Product {
     id : number;
     title: string;
-    descriptionc: string; 
+    description: string; 
     price: number;
     discountPercentage: number;
     rating: number;

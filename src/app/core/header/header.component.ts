@@ -1,8 +1,10 @@
+import { SearchProducts } from './../../home/store/products.actions';
+import { Router } from '@angular/router';
 import { AuthService } from './../../auth/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
-
+import * as ProductsActions from '../../home/store/products.actions';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -10,10 +12,10 @@ import * as fromApp from '../../store/app.reducer';
 })
 export class HeaderComponent  implements OnInit{
    isAuthenticated ;
-
+   searchText ;
  
    constructor(private store : Store<fromApp.AppState>
-    , private _authService: AuthService) {
+    , private _authService: AuthService , private router : Router) {
      
    }
   ngOnInit(): void {
@@ -22,10 +24,32 @@ export class HeaderComponent  implements OnInit{
     });
     this.isAuthenticated = this._authService.ValidateToken();
 
+    this.store.select("products").subscribe(state => {
+      this.searchText = state.searchText;
+    });
   }
 
   OnLogout() {
     this._authService.Logout();
+  }
+  OnLogin() {
+    this.router.navigate(["/auth"]);
+  }
+  OnHome(){
+    this.router.navigate(["/home"]);
+
+  }
+
+  onSearch($event) {
+    
+    const value = $event.target.value;
+    if (!value || value == "") {
+      this.store.dispatch(new ProductsActions.ClearSearch());
+    }else {
+      this.store.dispatch(new ProductsActions.SearchProducts($event.target.value));
+    }
+        
+
   }
 
 }

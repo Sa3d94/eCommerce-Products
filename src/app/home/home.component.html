@@ -3,7 +3,12 @@
 <div class="grid-container" >
     <div class= "grid-header">
         <h1>iPhone</h1>
-        <p>Home / Products</p>
+        <div class = "route">
+          <p>Home / Products </p> 
+          <p *ngIf = "productFilter"> / {{productFilter.replace('-', ' ')  | titlecase}} </p> 
+          <p *ngIf = "searchText">/ <b>{{searchText}}</b>  </p> 
+        </div>
+        
     </div>
       <div >
         <app-products-filter></app-products-filter>

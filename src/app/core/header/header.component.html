@@ -9,11 +9,12 @@
 
 
 </div>
-    <a>Home</a>
+    <a (click)="OnHome()">Home</a>
       <div class="spacer"></div>
     <div class="rightNav">
 
-     <input *ngIf="isAuthenticated" type="search" name="" id="" placeholder="Search">
+     <input *ngIf="isAuthenticated" type="search" name="search" id="search" placeholder="Search"
+     [(value)] = "searchText" (input) = onSearch($event)>
       <a *ngIf="isAuthenticated" title="YouTube">
         <svg id="shopping-cart" height="24" width="24" data-name="Cart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#808080">
           <path d="M0 0h24v24H0V0z" fill="none"/>
@@ -21,7 +22,7 @@
         </svg>
       </a>
       <a *ngIf="isAuthenticated" (click)="OnLogout()">Logout</a>
-      <a *ngIf="!isAuthenticated">Login</a>
+      <a *ngIf="!isAuthenticated" (click)="OnLogin()">Login</a>
 
    
      
