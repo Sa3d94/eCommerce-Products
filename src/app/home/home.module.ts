@@ -5,6 +5,7 @@ import { NgModule } from "@angular/core";
 import { HomeRoutingModule } from './home-routing.module';
 import { ProductsFilterComponent } from './products-filter/products-filter.component';
 import { HomeComponent } from './home.component';
+import { PaginationModule } from '../pagination/pagination.module';
 
 
 
@@ -16,7 +17,9 @@ import { HomeComponent } from './home.component';
   ],
   imports: [
     HomeRoutingModule,
-    CommonModule   
+    CommonModule,
+    PaginationModule
+   
 
   ],
   providers: [],

@@ -14,6 +14,10 @@ export class ProductsComponent implements OnInit {
 
 products : Product[]
 
+perPage = 9;
+currentPage = 1;
+pagesToShow = 3;
+
   constructor(private store : Store<fromApp.AppState>) {  }
   
   ngOnInit(): void {
@@ -35,6 +39,22 @@ products : Product[]
 
   addToCart(product) {
   this.store.dispatch(new ProductsActions.AddToCart(product) );
+  }
+
+
+  //------- Pagination ------ //
+
+  next() {
+    this.currentPage++;
+  }
+
+  prev() {
+    if (this.currentPage === 1) return;
+    this.currentPage--;
+  }
+
+  goToPage(loc: number): void {
+    this.currentPage = loc;
   }
 
 
