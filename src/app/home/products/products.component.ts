@@ -26,6 +26,8 @@ pagesToShow = 3;
         const categories = state.productFilter;
         const searchText = state.searchText ;
 
+       
+
         // Filter the products by The Selected category
         const filterByProductArr = categoryFilter(state.products, categories);
 
@@ -34,6 +36,12 @@ pagesToShow = 3;
   
   
         this.products = filterBySearchArr;
+
+         // We have to Reset the Pagination after the filter
+         if (categories || searchText) {
+           this.currentPage = 1;
+         }
+        
       })
   }
 
