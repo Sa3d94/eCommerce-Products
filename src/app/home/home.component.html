@@ -2,7 +2,7 @@
 
 <div class="grid-container" >
     <div class= "grid-header">
-        <h1>iPhone</h1>
+        <h1>{{filterHeader }}</h1>
         <div class = "route">
           <p>Home / Products </p> 
           <p *ngIf = "productFilter"> / {{productFilter.replace('-', ' ')  | titlecase}} </p> 

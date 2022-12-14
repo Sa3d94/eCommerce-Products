@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
 import * as ProductsActions from '../../home/store/products.actions';
+import { getLocaleFirstDayOfWeek } from '@angular/common';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -13,6 +14,7 @@ import * as ProductsActions from '../../home/store/products.actions';
 export class HeaderComponent  implements OnInit{
    isAuthenticated ;
    searchText ;
+   cartItems;
  
    constructor(private store : Store<fromApp.AppState>
     , private _authService: AuthService , private router : Router) {
@@ -26,6 +28,8 @@ export class HeaderComponent  implements OnInit{
 
     this.store.select("products").subscribe(state => {
       this.searchText = state.searchText;
+      this.cartItems = state.cartItems;
+      
     });
   }
 

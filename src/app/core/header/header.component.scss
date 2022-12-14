@@ -83,3 +83,24 @@ a:hover {
 a:hover {
   color: #125699;
 }
+
+.badge {
+  padding-left: 9px;
+  padding-right: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+
+.label-warning[href],
+.badge-warning[href] {
+  background-color: #00baba;
+}
+#lblCartCount {
+  font-size: 12px;
+  background: #00baba;
+  color: #000000;
+  padding: 2px 4px;
+  vertical-align: top;
+  margin-left: -32px;
+}

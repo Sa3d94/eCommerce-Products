@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
 
   productFilter = null;
   searchText =null;
-
+  filterHeader;
   constructor(private _productsService : ProductsService 
     , private store : Store<fromApp.AppState> ) {
     
@@ -23,6 +23,18 @@ export class HomeComponent implements OnInit {
      .subscribe(state => {
        this.productFilter = state.productFilter;
        this.searchText = state.searchText;
+
+       // Setting the Header for the Component
+       if (this.searchText && this.searchText != "") 
+       {
+         this.filterHeader = this.searchText;
+       }
+       else if (this.productFilter && this.productFilter) 
+       {
+        this.filterHeader = this.productFilter;
+       } else {
+        this.filterHeader = "Products"
+       }
      })
   }
 

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { categoryFilter } from 'src/app/filters/category.filter';
+import { searchFilter } from 'src/app/filters/search.filter';
 import { Product } from 'src/app/models/product.model';
 import * as fromApp from '../../store/app.reducer';
+import * as ProductsActions from '../store/products.actions'
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -16,8 +19,22 @@ products : Product[]
   ngOnInit(): void {
       this.store.select("products")
       .subscribe(state => {
-        this.products = state.products;
+        const categories = state.productFilter;
+        const searchText = state.searchText ;
+
+        // Filter the products by The Selected category
+        const filterByProductArr = categoryFilter(state.products, categories);
+
+        // Filter the products by the Search text
+        const filterBySearchArr = searchFilter(filterByProductArr, searchText);
+  
+  
+        this.products = filterBySearchArr;
       })
+  }
+
+  addToCart(product) {
+  this.store.dispatch(new ProductsActions.AddToCart(product) );
   }
 
 

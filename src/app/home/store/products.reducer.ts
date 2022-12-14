@@ -62,27 +62,22 @@ const initialState: State = {
             }
 
             //Get The Product From The State
-            //We can't directly change the object in the state
-            const product = state.products.find(s => s.id == action.payload.id);
+            //We can't directly change the object in the state or the payload
+            let changedProduct = {...action.payload};
 
             //Decrement the Number of Available items in Stock
-            action.payload.stock--;
+            changedProduct.stock--;
 
             // Update the Product
-            const updatedProduct = {
-                ...product,
-                ...action.payload,
-            };
             const updatedProducts = [...state.products];
-        
-            let productToBeUpdated = updatedProducts.find(s => s.id == action.payload.id); 
-            // Assigning the value since it's Object Refrenced
-            productToBeUpdated =  updatedProduct;
+            let index = updatedProducts.findIndex(s => s.id == changedProduct.id)
+            updatedProducts[index] = changedProduct;
+
 
             return {
                 ...state,
                 products : updatedProducts,
-                cartItems : state.cartItems++
+                cartItems : state.cartItems + 1
                } 
 
           default:
