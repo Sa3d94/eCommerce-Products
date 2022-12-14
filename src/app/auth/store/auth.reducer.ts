@@ -1,4 +1,4 @@
-import { User } from "../user.model";
+import { User } from "../../models/user.model";
 import * as AuthActions from ".//auth.actions";
 
 const initialState: State = {
