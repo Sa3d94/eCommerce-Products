@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   productFilter = null;
   searchText =null;
   filterHeader;
+  isProductsLoaded = false;
   constructor(private _productsService : ProductsService 
     , private store : Store<fromApp.AppState> ) {
     
@@ -21,6 +22,9 @@ export class HomeComponent implements OnInit {
 
      this.store.select("products")
      .subscribe(state => {
+       if (state.products) {
+         this.isProductsLoaded = true;
+       }
        this.productFilter = state.productFilter;
        this.searchText = state.searchText;
 

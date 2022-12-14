@@ -6,15 +6,17 @@ import { FooterComponent } from './footer/footer.component';
 import {RouterModule} from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthService } from '../auth/services/auth.service';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { ToastrComponent } from './toastr/toastr.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, NotFoundComponent],
+  declarations: [HeaderComponent, FooterComponent, NotFoundComponent, SpinnerComponent, ToastrComponent],
   imports: [
     CommonModule,
     RouterModule
   ],
   exports: [
-    HeaderComponent, FooterComponent,NotFoundComponent
+    HeaderComponent, FooterComponent,NotFoundComponent,SpinnerComponent, ToastrComponent
   ],
   providers : [AuthService]
 })

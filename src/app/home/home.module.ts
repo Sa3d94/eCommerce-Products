@@ -18,7 +18,7 @@ import { PaginationModule } from '../pagination/pagination.module';
   imports: [
     HomeRoutingModule,
     CommonModule,
-    PaginationModule
+    PaginationModule,
    
 
   ],

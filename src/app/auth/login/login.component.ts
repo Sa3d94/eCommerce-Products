@@ -13,7 +13,6 @@ import * as fromApp from '../../store/app.reducer';
 export class LoginComponent implements OnInit {
   Username : string = "";
   Password : string = "";
-  errorMessage : any;
   isLogging = false;
   constructor(private _authService : AuthService,
     private router: Router, 
@@ -23,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   this.store.select("auth").subscribe(state => {
-    this.errorMessage = state.authError;
+   
     this.isLogging = state.loading;
   })
   }
