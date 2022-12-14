@@ -3,6 +3,19 @@
 
   justify-content: center;
   padding: 5% 0 0;
+
+  position: absolute;
+  bottom: 150px;
+  left: 50%;
+
+  // right: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+  .pagination {
+    bottom: 10px;
+    left: 30%;
+  }
 }
 
 .pagination a {
