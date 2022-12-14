@@ -7,7 +7,9 @@ const initialState: State = {
     categories : null,
     productFilter : null,
     searchText: null,
-    cartItems : 0
+    cartItems : 0,
+    loading : false,
+    errorMessage : null
   };
   
   export interface State {
@@ -16,12 +18,22 @@ const initialState: State = {
     productFilter : string;
     searchText: string;
     cartItems : number;
+    loading : boolean;
+    errorMessage : string
   }
   export function ProductsReducer(
     state  = initialState,
     action: ProductsActions.ProductsActions
   ) {
     switch (action.type) {
+       case ProductsActions.GET_PRODUCTS_START :
+        //Set Loading to true
+          return {
+            ...state,
+            loading : true,
+            errorMessage : null
+        } 
+
         case ProductsActions.SET_PRODUCTS:
             // Retrieve the categories from The products array
             //Adding All to the categories
@@ -29,8 +41,18 @@ const initialState: State = {
           return {
             ...state,
             products : action.payload,
-            categories : categories
+            categories : categories,
+            loading : false,
+            errorMessage : null
           };
+
+        case ProductsActions.GET_PRODUCTS_FAILED :
+            //Set Loading to false
+          return {
+              ...state,
+              loading : false,
+              errorMessage : action.payload
+            } 
 
         case ProductsActions.ADD_PRODUCT_FILTER :
             return {
@@ -54,6 +76,12 @@ const initialState: State = {
                 ...state,
                 searchText : null
              }
+
+          case ProductsActions.CLEAR_ERROR :
+            return {
+                 ...state,
+                 errorMessage : null
+                }
              
         case ProductsActions.ADD_TO_CART :
             // If there are no available items, then don't change the state

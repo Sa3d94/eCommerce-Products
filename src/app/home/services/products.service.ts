@@ -21,6 +21,8 @@ export class ProductsService {
 
 
     async GetProducts() {
+      this.store.dispatch(new ProductsActions.GetProductsStart());
+
       await this.http.get(
         `${this.apiUrl}/products`,
         { headers: this.headers, 
@@ -30,13 +32,16 @@ export class ProductsService {
       .subscribe((resData : any) => {
 
         this.store.dispatch(new ProductsActions.SetProducts(resData.products));
- 
+
   
         }, 
         error => {
-        //TODO: Dispatch Action for Showing Error Message
-        console.log(error);
-        
+    
+        this.store.dispatch(new ProductsActions.GetProductsFailed(error.error.message));
+
+          // After 3 seconds, Clear the error
+              setTimeout(() =>{   this.store.dispatch(new ProductsActions.ClearError())}, 3000);
+       
         })
 
     }
